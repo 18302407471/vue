@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Login from  '@/pages/Login'
+import Welcome from '@/pages/Welcome'
 
 Vue.use(Router)
 
@@ -10,7 +11,18 @@ export default new Router({
     {
       path: '/',
       name: 'login',
-      component: Login
+      component: Login,
+      meta: {
+        keepAlive: false
+      }
+    },
+    {
+      path: '/welcome',
+      name: 'welcome',
+      component: Welcome,
+      meta: {
+        keepAlive: true
+      }
     }
   ]
 })

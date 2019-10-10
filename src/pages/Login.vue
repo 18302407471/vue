@@ -1,6 +1,7 @@
 <template>
-  <el-container >
-    <el-main :style ="note" class="login-main">
+  <el-container class="login-container" >
+    <el-header></el-header>
+    <el-main class="login-main">
       <el-form ref="form" :model="form" label-width="80px">
         <el-form-item label="账号">
           <el-input ref="name" v-model="form.name" name="Name"/>
@@ -29,11 +30,11 @@
           password: ''
         },
         loading: false,
-        note: {
-          backgroundImage: "url(" + require("../assets/images/register-bg.png") + ")"
-        },
+        // note: {
+        //   backgroundImage: "url(" + require("../assets/images/register-bg.png") + ")"
+        // },
         redirect: undefined,
-      otherQuery: {}
+        otherQuery: {}
       }
     },
     watch: {
@@ -59,7 +60,7 @@
             this.loading = true;
             this.$store.dispatch('commitName', this.form.name)
               .then(() => {
-                this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+                this.$router.push({ path: '/welcome', query: this.otherQuery })
                 this.loading = false
               })
               .catch(() => {
@@ -84,6 +85,10 @@
 </script>
 
 <style>
+  .login-container {
+    background-image: url(../assets/images/register-bg.png);
+    background-size: cover;
+  }
   .login-main {
     padding: 10% 35% 10% 35%;
   }
