@@ -1,20 +1,20 @@
 <template>
   <div class="navMenu">
-      <label v-for="(navMenu,aa) in navMenus.childs" :key="aa">
-        <el-menu-item v-if="navMenu.childs==null&&navMenu.entity&&navMenu.entity.state==='ENABLE'"
+      <label v-for="(navMenu,index) in navMenus.childs" :key="index">
+        <el-menu-item v-if="!navMenu.childs"
                     :key="navMenu.entity.id" :data="navMenu" :index="navMenu.entity.name" :route="navMenu.entity.value"
                     disabled="">
           <i :class="navMenu.entity.icon"></i>
           <span slot="title">{{navMenu.entity.alias}}</span>
         </el-menu-item>
  
-        <el-submenu v-if="navMenu.childs&&navMenu.entity&&navMenu.entity.state==='ENABLE'"
+        <el-submenu v-if="navMenu.childs"
                     :key="navMenu.entity.id" :data="navMenu" :index="navMenu.entity.name">
           <template slot="title">
             <i :class="navMenu.entity.icon"></i>
             <span> {{navMenu.entity.alias}}</span>
           </template>
-          <NavMenu :navMenus="navMenu.childs"></NavMenu>
+          <NavMenu :navMenus="navMenu" />
         </el-submenu>
       </label>
   </div>
@@ -26,6 +26,7 @@
     props: ['navMenus'],
     data() {
       return {
+
       }
     },
     methods: {}
@@ -33,5 +34,4 @@
 </script>
  
 <style>
- 
 </style>
